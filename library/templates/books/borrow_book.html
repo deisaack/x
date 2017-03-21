@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block quicklinks %}
+  <li><a href="{% url 'books:list' %}">Home</a></li>
+  <li><a href="{% url 'books:all' %}">All books</a></li>
+  <li><a href="{% url 'books:add-book' %}">Add a book</a></li>
+  <li><a href="{% url 'books:add-category' %}">New book category</a></li>
+  <li><a href="{% url 'books:add-publisher' %}">New Publishe</a></li>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="col-sm-2"></div>
+<div class="col-sm-6">
+<h1>Issue out a book </h1>
+
+<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+{{ form|crispy }}
+<input type='submit' class='btn btn-default' value='Issue out Book' />
+</form>
+</div>
+<div class="col-sm-4">
+        <h3>Majaor book categories</h3>
+        <p>
+            <img src="{% static "img/car.jpg" %}" class="img-responsive">
+            access all the data about student related. • Admin shall manage the school activity. • Admin shall generate time table.
+            • Student shall login by his/her id. • Student shall view study activity of his class • Student shall submit assignment
+            online. • Student shall view the news event of the school..
+        </p>
+        <br>
+        <b><h4>more info</h4></b>
+         <p>
+             <div class="col-xs-8">
+        <img src="{% static "img/car5.jpg" %}" class="img-responsive"></div>
+            • Teacher shall take test online. • Teacher shall mark attendance
+            online. • Teacher shall declare result online. • Parents shall login through his child id. • Parents shall view reports
+            of his child. • Parents shall communicate with teacher.
+            7. Non-Functional Requirements • The system should be easy to use. • The system should be available 24 hour. • The system should
+            response at the time • System should provide specific information to specific user. • The system should not fail.
+            • Right information is available to right student and teacher at right time.
+        </p>
+    </div>
+
+{% endblock content %}

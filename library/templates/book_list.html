@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block quicklinks %}
+  <li><a href="{% url 'books:list' %}">Home</a></li>
+  <li><a href="{% url 'books:all' %}">All books</a></li>
+  <li><a href="{% url 'books:add-book' %}">Add a book</a></li>
+  <li><a href="{% url 'books:add-category' %}">New book category</a></li>
+  <li><a href="{% url 'books:add-publisher' %}">New Publishe</a></li>
+{% endblock %}
+{% block content %}
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-6">
+    <h1>{{ title }}</h1>
+<form method='GET' action=''>
+<input type='text' name='q' placeholder='Search books' value='{{ request.GET.q }}'/>
+<input type='submit' value='Search' />
+</form>
+{% for obj in object_list %}
+<div class="row">
+  <div class="col-sm-12">
+    <div class="thumbnail">
+        {% if obj.category.image %}
+         <img src='{{ obj.category.image.url }}' class='img-responsive' />
+        {% endif %}
+      <div class="caption">
+        {% if obj.borowed %}<h3>Staff only: The book is already borrowed</h3>{% endif %}
+        <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <small>{{ obj.publisher }}</small></h3>
+           <p><b>These Books: </b> {{ obj.category.description|truncatechars:100 }}</p>
+           <p><b>This Book: </b> {{ obj.description|linebreaks|truncatechars:100 }}</p>
+        <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+      </div>
+    </div>
+  </div>
+<hr/>
+</div>
+{% endfor %}
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+
+</div>
+    <div class="col-sm-4">
+        <h3>Majaor book categories</h3>
+        <p>
+            <img src="{% static "img/car.jpg" %}" class="img-responsive">
+            access all the data about student related. • Admin shall manage the school activity. • Admin shall generate time table.
+            • Student shall login by his/her id. • Student shall view study activity of his class • Student shall submit assignment
+            online. • Student shall view the news event of the school..
+        </p>
+        <br>
+        <b><h4>more info</h4></b>
+         <p>
+             <div class="col-xs-8">
+        <img src="{% static "img/car5.jpg" %}" class="img-responsive"></div>
+            • Teacher shall take test online. • Teacher shall mark attendance
+            online. • Teacher shall declare result online. • Parents shall login through his child id. • Parents shall view reports
+            of his child. • Parents shall communicate with teacher.
+            7. Non-Functional Requirements • The system should be easy to use. • The system should be available 24 hour. • The system should
+            response at the time • System should provide specific information to specific user. • The system should not fail.
+            • Right information is available to right student and teacher at right time.
+        </p>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Profile</title>
+<style type="text/css">
+    .profile-img{
+        max-width: 200px;
+        max-height: 250px;
+        border: 5px solid #ffffff;
+        border-radius: 100%;
+        box-shadow: 0 2px 2px rgba(0, 0, 0,0.3);
+    }
+</style>
+{% endblock %}}
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<p>
+<ul style="list-style: none">
+    <img src="{{ user.userprofile.image.url }}" class="profile-img" alt="My profile image">
+<li>Username: {{ user }}
+<li>First Name: {{ user.first_name }}
+<li>Last Name: {{ user.last_name }}
+<li>Email: {{ user.email }}
+<li>Description: {{ user.userprofile.description }}
+<li>Phone: {{ user.userprofile.phone }}</li>
+<li>City: {{ user.userprofile.city }}
+<li>Website: {{ user.userprofile.website }}
+</ul>
+</p>
+</div>
+</div>
+    </div>
+{% endblock %}
+

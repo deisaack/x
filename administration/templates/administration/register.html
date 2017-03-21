@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block quicklinks %}
+  <li><a href="{% url 'administration:home' %}">Home</a></li>
+  <li><a href="{% url 'administration:add-parent' %}">Add Parent</a></li>
+  <li><a href="{% url 'administration:add-student' %}">Add Student</a></li>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="col-sm-2"></div>
+<div class="col-sm-6">
+<h1>{{ action_head }}</h1>
+
+<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+{{ form|crispy }}
+<input type='submit' class='btn btn-default' value='Register Student' />
+</form>
+</div>
+
+<div class="col-sm-4">
+    </div>
+{% endblock content %}

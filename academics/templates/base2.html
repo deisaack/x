@@ -1,0 +1,37 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!--DOCTYPE html -->
+<html>
+<head>
+<title>{% block head_title %}Library{% endblock head_title %}</title>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
+<meta name='viewport' content="width=device-width, initial-scale=1">
+<style>
+{% block style %}{% endblock style %}
+
+</style>
+</head>
+<body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.faceaccademic.net/en_US/sdk.js#xfbml=1&version=v2.5";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'faceaccademic-jssdk'));</script>
+
+<div class='container'>
+{% include "messages_display.html" %}
+{% block content %}{% endblock content %}
+</div>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block quicklinks %}
+  <li><a href="{% url 'books:list' %}">Home</a></li>
+  <li><a href="{% url 'books:all' %}">All books</a></li>
+  <li><a href="{% url 'books:add-book' %}">Add a book</a></li>
+  <li><a href="{% url 'books:add-category' %}">New book category</a></li>
+  <li><a href="{% url 'books:add-publisher' %}">New Publishe</a></li>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="col-sm-2"></div>
+<div class="col-sm-6">
+<h1>New Category </h1>
+
+<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+{{ form|crispy }}
+<input type='submit' class='btn btn-default' value='Register Category' />
+</form>
+</div>
+
+<div class="col-sm-4">
+
+    </div>
+
+{% endblock content %}

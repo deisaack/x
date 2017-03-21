@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block quicklinks %}
+  <li><a href="{% url 'academics:all' %}">Home</a></li>
+  <li><a href="{% url 'academics:timetable' %}">Megatimetable</a></li>
+  <li><a href="{% url 'academics:result' %}">Results</a></li>
+  <li><a href="{% url 'academics:import_sheet' %}">Import Result</a></li>
+{% endblock %}
+{% block content %}
+<div class="col-sm-1">
+</div>
+<div class="col-sm-9">
+<h1>{{ title }}</h1> <b>{{ b }} accademics in {{ c }} Cattegories and {{ p }} Publishers</b>
+<form method='GET' action=''>
+<input type='text' name='q' placeholder='Search accademics' value='{{ request.GET.q }}'/>
+<input type='submit' value='Search' />
+</form>
+
+    <table border="1"><th>No: </th> <th>TITLE</th> <th>PUBLISH DATE</th>
+        <th>CATEGORY NAME</th> <th>PUBLISHER</th><th>LINK</th>  {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.no }}</td><td> {{ obj.title }}</td> <td> {{ obj.publish }}</td>
+                <td>{{ obj.category.name }} </td> <td>{{ obj.publisher }}</td>
+                <td><a href="{{ obj.get_absolute_url }}" class="text-primary" role="button">View</a></td>
+            </tr>
+{% endfor %}
+    </table>
+
+</div>
+    <div class="col-sm-2">
+    {{ a }}
+        <hr>
+    {{ d }}
+        <hr>{{ e }}
+        <hr>{{ f }}
+
+    </div>
+{% endblock content %}

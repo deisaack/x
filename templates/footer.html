@@ -1,0 +1,16 @@
+<div class="container-fluid" style="background-color: #ffecae;color: #421609">
+<div class="container" style="background-color: #ffecae;color: #421609">
+    {% if user.is_authenticated %}
+      You are logged in as <i>{{ user }}</i> <a href="{% url 'portals:logout' %}">Logout</a>
+    {% endif %}
+    <div class="alignright">
+        Powered | Designed by <a href="#">Holistic Academy Team</a>		</div>
+    <div class="social-icons">
+    </div>
+    <div class="alignleft">
+    © Copyright 2017, All Rights Reserved
+    </div>
+    <div class="clear"></div>
+</div>
+</div>
+

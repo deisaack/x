@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block quicklinks %}
+  <li><a href="{% url 'academics:all' %}">Home</a></li>
+  <li><a href="{% url 'academics:timetable' %}">Megatimetable</a></li>
+  <li><a href="{% url 'academics:result' %}">Results</a></li>
+  <li><a href="{% url 'academics:import_sheet' %}">Import Result</a></li>
+{% endblock %}
+{% block head_title %}
+{{ instance.year }} | {{ block.super }}
+{% endblock head_title %}
+{% block content %}
+<div class="col-sm-1"></div>
+<div class="col-sm-8 panel panel-primary">
+<h2>{{ instance.year }} CLASS <small>  on {{ instance.day }} {{ instance.time.time }}</small></h2>
+    <br>
+    {% if instance.year.image %}
+    <img src='{{ instance.year.image.url }}' class='img-responsive' />
+    {% endif %}
+    <br>
+    <hr/>
+<div class='row'>
+<div class=' col-sm-9'>
+    <p> Teacher <b>{{ instance.teacher.first_name }} {{ instance.teacher.last_name }}</b> will be taking through
+        {{ instance.year }} students with
+        {{ instance.subject }} within {{ instance.time }}
+    </p>
+        {% if instance.year.image %}
+        <p>{{ instance.subject }} involves {{ instance.subject.description|linebreaks }}</p>
+        {% endif %}
+</div>
+    <div class="col-sm-3"><img src="{{ instance.teacher.image.url }}" class="img-responsive img-circle"/>
+    <i class="pull-right">{{ instance.teacher.first_name }} {{ instance.teacher.last_name }}</i></div>
+</div>
+</div>
+    <div class="col-sm-3">
+        <h3>Majaor accademic categories</h3>
+        <p>
+            <img src="{% static "img/car.jpg" %}" class="img-responsive">
+            access all the data about student related. • Admin shall manage the school activity. • Admin shall generate time table.
+            • Student shall login by his/her id. • Student shall view study activity of his class • Student shall submit assignment
+            online. • Student shall view the news event of the school..
+        </p>
+        <br>
+        <b><h4>more info</h4></b>
+         <p>
+             <div class="col-xs-8">
+        <img src="{% static "img/car5.jpg" %}" class="img-responsive"></div>
+            • Teacher shall take test online. • Teacher shall mark attendance
+            online. • Teacher shall declare result online. • Parents shall login through his child id. • Parents shall view reports
+            of his child. • Parents shall communicate with teacher.
+            7. Non-Functional Requirements • The system should be easy to use. • The system should be available 24 hour. • The system should
+            response at the time • System should provide specific information to specific user. • The system should not fail.
+            • Right information is available to right student and teacher at right time.
+        </p>
+    </div>
+{% endblock content %}

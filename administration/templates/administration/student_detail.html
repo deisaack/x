@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block quicklinks %}
+  <li><a href="{% url 'administration:home' %}">Home</a></li>
+  <li><a href="{% url 'administration:add-parent' %}">Add Parent</a></li>
+  <li><a href="{% url 'administration:add-student' %}">Add Student</a></li>
+{% endblock %}
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+{% block content %}
+
+<div class="col-sm-2"></div>
+<div class="col-sm-6">
+    {% if instance.category.image %}
+    <img src='{{ instance.category.image.url }}' class='img-responsive' />
+    {% endif %}
+<h2>{{ instance.title }} <small> {{ instance.no }}</small></h2>
+<i><p>{% if instance.borowed %}<span style='color:red;'>Borowed</span>  by {{ instance.borower.reg_no }} :
+    {{ instance.borower.first_name }} on {{ instance.borow_or_return_date }}</p> {% endif %}</i>
+    <hr/>
+
+<div class='row'>
+<div class='col-sm-12'>
+    <p><b>Published on: </b>{{ instance.publish }} <b>By: </b>{{ instance.publisher }}</p>
+    <h4><b>Category name:</b> <i>{{ instance.category.name }}</i></h4>
+    <p>{{ instance.category.description }}
+    <h4>{% if instance.description %}This specific book: {% endif %}</h4>
+    <p>{{ instance.description|linebreaks }}</p>
+<hr/>
+<br/>
+</div>
+</div>
+</div>
+
+    <div class="col-sm-4">
+
+    </div>
+
+
+{% endblock content %}

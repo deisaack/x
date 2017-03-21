@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block quicklinks %}
+  <li><a href="{% url 'academics:all' %}">Home</a></li>
+  <li><a href="{% url 'academics:timetable' %}">Megatimetable</a></li>
+  <li><a href="{% url 'academics:result' %}">Results</a></li>
+  <li><a href="{% url 'academics:import_sheet' %}">Import Result</a></li>
+{% endblock %}
+{% block content %}
+<div class="col-sm-1">
+</div>
+<div class="col-sm-9">
+<h1>{{ title }}</h1>
+{% if object_list %}
+<form method='GET' action=''>
+<input type='text' name='q' placeholder='Search our timetable' value='{{ request.GET.q }}'/>
+<input type='submit' value='Search' />
+</form>
+<div class="table-responsive">
+     <table class="table table-condensed table-bordered table-hover">
+        <th>DAY</th><th>TIME</th><th>CLASS</th><th>SUBJECT</th><th>TEACHER</th><td>LINK</td>
+        {% for obj in object_list %}
+        <tr>
+            <td>{{ obj.day }}</td><td>{{ obj.time }}</td><td>{{ obj.year }}</td><td>{{ obj.subject }}</td>
+            <td>{{ obj.teacher }}</td> <td><a href="{{ obj.get_absolute_url }}" class="text-primary" role="button">View</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/accademics/t">View the full timetable</a>
+</div>
+    <hr>
+
+<div class="panel panel-info">
+    {% for event in events %}
+        <div class="panel panel-info">
+        <b>{{ event }} : </b><br>{{ event.description }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% if results %}
+    <div class="table-responsive">    <hr>
+
+     <table class="table table-condensed table-bordered table-hover">
+        <th>REG NO:</th><th>FIRST NAME</th><th>LAST NAME</th><th>MATHS</th><th>ENGLISH</th><th>KISWAHILI</th>
+        <th>SCIENCE</th><th>SST/CRE</th><th>TOTAL</th>
+        {% for obj in results %}
+        <tr>
+            <td>{{ obj.reg_no }}</td><td>{{ obj.first_name }}</td><td>{{ obj.last_name }}</td><td>{{ obj.mathematics }}</td>
+            <td>{{ obj.english }}</td> <td>{{ obj.kiswahili }}<td>{{ obj.science }}</td><td>{{ obj.sst_cre }}</td>
+            <th>{{ obj.total }}</th>
+
+        </tr>
+        {% endfor %}
+         <br><br><br>            <a href="/accademics/r">View the full result</a>
+         <br><br>
+    </table>
+    </div>
+{% endif %}
+</div>
+    <div class="col-sm-2">
+    </div>
+{% endblock content %}

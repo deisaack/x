@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block quicklinks %}
+  <li><a href="{% url 'academics:all' %}">Home</a></li>
+  <li><a href="{% url 'academics:timetable' %}">Megatimetable</a></li>
+  <li><a href="{% url 'academics:result' %}">Results</a></li>
+  <li><a href="{% url 'academics:import_sheet' %}">Import Result</a></li>
+{% endblock %}
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+{% block content %}
+
+<div class="col-sm-2"></div>
+<div class="col-sm-6">
+    {% if instance.category.image %}
+    <img src='{{ instance.category.image.url }}' class='img-responsive' />
+    {% endif %}
+<h2>{{ instance.title }} <small> {{ instance.no }}</small></h2>
+<i><p>{% if instance.borowed %}<span style='color:red;'>Borowed</span>  by {{ instance.borower.reg_no }} :
+    {{ instance.borower.first_name }} on {{ instance.borow_or_return_date }}</p> {% endif %}</i>
+    <hr/>
+
+<div class='row'>
+<div class='col-sm-12'>
+    <p><b>Published on: </b>{{ instance.publish }} <b>By: </b>{{ instance.publisher }}</p>
+    <h4><b>Category name:</b> <i>{{ instance.category.name }}</i></h4>
+    <p>{{ instance.category.description }}
+    <h4>{% if instance.description %}This specific accademic: {% endif %}</h4>
+    <p>{{ instance.description|linebreaks }}</p>
+<hr/>
+<br/>
+</div>
+</div>
+</div>
+
+    <div class="col-sm-4">
+        <h3>Majaor accademic categories</h3>
+        <p>
+            <img src="{% static "img/car.jpg" %}" class="img-responsive">
+            access all the data about student related. • Admin shall manage the school activity. • Admin shall generate time table.
+            • Student shall login by his/her id. • Student shall view study activity of his class • Student shall submit assignment
+            online. • Student shall view the news event of the school..
+        </p>
+        <br>
+        <b><h4>more info</h4></b>
+         <p>
+             <div class="col-xs-8">
+        <img src="{% static "img/car5.jpg" %}" class="img-responsive"></div>
+            • Teacher shall take test online. • Teacher shall mark attendance
+            online. • Teacher shall declare result online. • Parents shall login through his child id. • Parents shall view reports
+            of his child. • Parents shall communicate with teacher.
+            7. Non-Functional Requirements • The system should be easy to use. • The system should be available 24 hour. • The system should
+            response at the time • System should provide specific information to specific user. • The system should not fail.
+            • Right information is available to right student and teacher at right time.
+        </p>
+    </div>
+
+
+{% endblock content %}
